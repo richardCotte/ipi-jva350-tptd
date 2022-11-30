@@ -33,16 +33,18 @@ public class SalarieAideADomicile {
     private LocalDate moisEnCours;
     private LocalDate moisDebutContrat;
 
-    private double joursTravaillesAnneeN= 0;
-    private double congesPayesAcquisAnneeN= 0;
+    private double joursTravaillesAnneeN = 0;
+    private double congesPayesAcquisAnneeN = 0;
 
-    /** en année N sur l'acquis N-1 */
+    /**
+     * en année N sur l'acquis N-1
+     */
     @Convert(converter = LinkedHashSetStringConverter.class)
     @Column
     private LinkedHashSet<LocalDate> congesPayesPris = new LinkedHashSet<LocalDate>();
-    private double joursTravaillesAnneeNMoins1= 0;
-    private double congesPayesAcquisAnneeNMoins1= 0;
-    private double congesPayesPrisAnneeNMoins1= 0;
+    private double joursTravaillesAnneeNMoins1 = 0;
+    private double congesPayesAcquisAnneeNMoins1 = 0;
+    private double congesPayesPrisAnneeNMoins1 = 0;
 
     public SalarieAideADomicile() {
     }
@@ -65,10 +67,11 @@ public class SalarieAideADomicile {
     /**
      * D'après https://femme-de-menage.ooreka.fr/comprendre/conges-payes-femme-de-menage :
      * Pour s'ouvrir des droits à congés payés – capitalisation de jours + prise et/ou paiement – l'aide ménagère doit avoir travaillé pour le particulier employeur :
-     *     pendant au moins dix jours (pas forcément de suite) ;
-     *     à l'intérieur d'une période de temps – dite de « référence » – allant du 1er juin de l'année N au 31 mai de l'année N - 1.
+     * pendant au moins dix jours (pas forcément de suite) ;
+     * à l'intérieur d'une période de temps – dite de « référence » – allant du 1er juin de l'année N au 31 mai de l'année N - 1.
      * NB. on considère que la précédente ligne est correcte d'un point de vue des spécifications métier
      * bien que l'originale dans le lien dit "N+1" au lieu de "N-1"
+     *
      * @return
      */
     public boolean aLegalementDroitADesCongesPayes() {
@@ -95,10 +98,10 @@ public class SalarieAideADomicile {
 
         LocalDate jour = dateDebut;
         if (dateDebut.getDayOfWeek().getValue() != DayOfWeek.SUNDAY.getValue()
-                    && !Entreprise.estJourFerie(dateDebut) && estHabituellementTravaille(dateDebut)) {
+                && !Entreprise.estJourFerie(dateDebut) && estHabituellementTravaille(dateDebut)) {
             joursDeCongeDecomptes.add(dateDebut);
         }
-        for (jour = jour.plusDays(1) ; jour.minusDays(1).isBefore(dateFin)
+        for (jour = jour.plusDays(1); jour.minusDays(1).isBefore(dateFin)
                 || (!estHabituellementTravaille(jour) && estJourOuvrable(jour));
              jour = jour.plusDays(1)) {
             if (jour.getDayOfWeek().getValue() != DayOfWeek.SUNDAY.getValue()
@@ -108,14 +111,15 @@ public class SalarieAideADomicile {
         }
         return joursDeCongeDecomptes;
     }
+
     public boolean estJourOuvrable(LocalDate jour) {
         return jour.getDayOfWeek().getValue() != DayOfWeek.SUNDAY.getValue()
                 && !Entreprise.estJourFerie(jour);
     }
+
     public boolean estHabituellementTravaille(LocalDate jour) {
         return joursHabituellementTravailles.contains(jour.getDayOfWeek());
     }
-
 
 
     public Long getId() {
@@ -217,7 +221,7 @@ public class SalarieAideADomicile {
     public void setMoisDebutContrat(LocalDate moisDebutContrat) {
         this.moisDebutContrat = moisDebutContrat;
     }
-    
+
 
     @Override
     public boolean equals(Object o) {

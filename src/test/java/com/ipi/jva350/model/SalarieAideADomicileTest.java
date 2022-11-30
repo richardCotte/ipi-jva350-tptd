@@ -39,7 +39,12 @@ class SalarieAideADomicileTest {
 
     @ParameterizedTest
     @CsvSource({
-            "'2022-11-01', '2022-11-10', 8"
+            "'2022-10-31', '2022-10-31', 1",
+            "'2022-10-31', '2022-11-02', 2",
+            "'2022-10-31', '2022-11-03', 3",
+            "'2022-10-31', '2022-11-04', 5",
+            "'2022-10-31', '2022-11-05', 5",
+            "'2022-10-28', '2022-10-31', 3",
     })
     void calculeJoursDeCongeDecomptesPourPlage(String dateDebut, String dateFin, Integer expected) {
         LocalDate dateDebutParsed = LocalDate.parse(dateDebut);

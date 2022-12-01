@@ -155,20 +155,20 @@ public class SalarieAideADomicileService {
     }
 
     /**
-     * Clôture le mois donné :
+     * Clôture le mois en cours du salarié donné (et fais les calculs requis pour la fiche de paie de ce mois) :
      * (pas forcément en cours, par exemple en cas de retard, vacances de l'entreprise)
      * Met à jour les jours travaillés et congés payés restants de l'année N, décompte ceux de l'année N-1
      * on déduit un jour de congé entier pour chaque absence. Par exemple lors des vacances, pour savoir combien de jours de congés payés sont consommés, même si ladite absence dure seulement une demi-journée.
      * Si dernier mois de l'année, clôture aussi l'année
      *
-     * @param salarieAideADomicile TODO nom ?
-     * @param joursTravailles
+     * @param salarieAideADomicile salarié
+     * @param joursTravailles jours travaillés dans le mois en cours du salarié
      */
     public void clotureMois(SalarieAideADomicile salarieAideADomicile, double joursTravailles) throws SalarieException {
         salarieAideADomicile.setJoursTravaillesAnneeN(salarieAideADomicile.getJoursTravaillesAnneeN() + joursTravailles);
 
         salarieAideADomicile.setCongesPayesAcquisAnneeN(salarieAideADomicile.getCongesPayesAcquisAnneeN()
-                + salarieAideADomicile.CONGES_PAYES_ACQUIS_PAR_MOIS);
+                + SalarieAideADomicile.CONGES_PAYES_ACQUIS_PAR_MOIS);
 
         salarieAideADomicile.setMoisEnCours(salarieAideADomicile.getMoisEnCours().plusMonths(1));
 

@@ -116,11 +116,9 @@ public class SalarieAideADomicileService {
         }
 
         // on vérifie que le congé demandé est dans les mois restants de l'année de congés en cours du salarié :
-        if (joursDecomptes.stream().findFirst().isPresent()) {
-            if (joursDecomptes.stream().findFirst().get()
-                    .isBefore(salarieAideADomicile.getMoisEnCours())) {
-                throw new SalarieException("Pas possible de prendre de congé avant le mois en cours !");
-            }
+        if (joursDecomptes.stream().findFirst().get()
+                .isBefore(salarieAideADomicile.getMoisEnCours())) {
+            throw new SalarieException("Pas possible de prendre de congé avant le mois en cours !");
         }
 
         LinkedHashSet<LocalDate> congesPayesPrisDecomptesAnneeN = joursDecomptes.stream()

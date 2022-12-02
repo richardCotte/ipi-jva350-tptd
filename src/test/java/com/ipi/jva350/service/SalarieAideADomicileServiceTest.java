@@ -51,4 +51,8 @@ class SalarieAideADomicileServiceTest {
         Assertions.assertEquals(congesPayesAcquisInitial + SalarieAideADomicile.CONGES_PAYES_ACQUIS_PAR_MOIS,
                 aide.getCongesPayesAcquisAnneeN());
     }
+
+    @Test
+    void calculeLimiteEntrepriseCongesPermis() {
+    }
 }

@@ -7,7 +7,7 @@ public final class Entreprise {
 
     private static final Map<Integer, LocalDate> datePaque = new HashMap<>();
 
-    private Entreprise() {
+    public Entreprise() {
 
     }
 
@@ -142,14 +142,15 @@ public final class Entreprise {
     /**
      * Calcule si une date donnée est dans une plage (intervalle) de date (inclusif)
      *
-     * @param d
+     * Si on n'avait pas fait en TDD, nous n'aurions surement pas commencé par la partie "inclusive"
+     *
+     * @param d     date a tester
      * @param debut date de début de la plage
      * @param fin   date de fin de la plage
-     * @return
+     * @return true si d est entre debut et fin
      */
     public static boolean estDansPlage(LocalDate d, LocalDate debut, LocalDate fin) {
-        // à implémenter en TDD !
-        throw new RuntimeException("à implémenter en TDD !");
+        return d.isAfter(debut) && d.isBefore(fin) || d.isEqual(debut) || d.isEqual(fin);
     }
 
 }

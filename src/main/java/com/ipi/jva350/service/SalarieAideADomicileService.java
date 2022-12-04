@@ -48,14 +48,15 @@ public class SalarieAideADomicileService {
      * bonus ou malus de 20% de la différence pour aider à équilibrer la moyenne actuelle des congés pris
      * - marge supplémentaire de 10% du nombre de mois jusqu'à celui du dernier jour de congé
      * - bonus de 1 par année d'ancienneté jusqu'à 10
-     * Utilisé par ajouteMois(). NB. ajouteMois() a déjà vérifié que le congé est dans l'année en cours.
+     * Utilisé par ajouteMois().
+     * NB : ajouteMois() a déjà vérifié que le congé est dans l'année en cours.
      *
      * @param moisEnCours                   du salarieAideADomicile
      * @param congesPayesAcquisAnneeNMoins1 du salarieAideADomicile
+     * @param moisDebutContrat              du salarieAideADomicile
      * @param premierJourDeConge            demandé
      * @param dernierJourDeConge            demandé
      * @return arrondi à l'entier le plus proche
-     * @param moisDebutContrat du salarieAideADomicile
      */
     public long calculeLimiteEntrepriseCongesPermis(LocalDate moisEnCours, double congesPayesAcquisAnneeNMoins1,
                                                     LocalDate moisDebutContrat,

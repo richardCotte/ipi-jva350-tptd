@@ -71,5 +71,4 @@ public class SalarieAideADomicileTest {
         // Then
         Assertions.assertEquals(joursDeCongesDecomptes.size(), expectedSize);
     }
-
 }

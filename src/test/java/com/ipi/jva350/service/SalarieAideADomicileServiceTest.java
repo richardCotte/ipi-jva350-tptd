@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.xml.crypto.Data;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,5 +51,23 @@ class SalarieAideADomicileServiceTest {
         // ou aide = repo.findByNom(...)
         Assertions.assertEquals(congesPayesAcquisInitial + SalarieAideADomicile.CONGES_PAYES_ACQUIS_PAR_MOIS,
                 aide.getCongesPayesAcquisAnneeN());
+    }
+
+    @Test
+    void calculeLimiteEntrepriseCongesPermis() throws SalarieException {
+
+        SalarieAideADomicile sd = new SalarieAideADomicile();
+        sd.setNom("Joris");
+        sd.setMoisEnCours(LocalDate.of(2022, 5, 1));
+        sd.setCongesPayesAcquisAnneeNMoins1(SalarieAideADomicile.CONGES_PAYES_ACQUIS_PAR_MOIS * 12);
+        sd.setMoisDebutContrat(LocalDate.of(2022, 01, 01));
+        salarieAideADomicileService.creerSalarieAideADomicile(sd);
+        long  result = salarieAideADomicileService.calculeLimiteEntrepriseCongesPermis(sd.getMoisEnCours(),
+                sd.getCongesPayesAcquisAnneeNMoins1(),
+                sd.getMoisDebutContrat(),
+                LocalDate.of(2022, 7, 1),
+                LocalDate.of(2022, 7, 8));
+
+        Assertions.assertEquals(8l, result);
     }
 }

@@ -133,15 +133,24 @@ public final class Entreprise {
         int monEntier = (int) Entreprise.joursFeries(jour).stream().filter(d ->
                 d.equals(jour)).count();
         int test = bissextile(jour.getYear()) ? 1 : 0;
-        if (test != 0 && !(monEntier > 1)) {
+        if (test != 0 && monEntier <= 1) {
             test--;
         }
         return monEntier != test;
     }
 
+    /**
+     * Calcule si une date donnée est dans une plage (intervalle) de date (inclusif)
+     *
+     * Si on n'avait pas fait en TDD, nous n'aurions surement pas commencé par la partie "inclusive"
+     *
+     * @param d     date a tester
+     * @param debut date de début de la plage
+     * @param fin   date de fin de la plage
+     * @return true si d est entre debut et fin
+     */
     public static boolean estDansPlage(LocalDate d, LocalDate debut, LocalDate fin) {
-        // à implémenter en TDD !
-        throw new RuntimeException("à implémenter en TDD !");
+        return d.isAfter(debut) && d.isBefore(fin) || d.isEqual(debut) || d.isEqual(fin);
     }
 
 }

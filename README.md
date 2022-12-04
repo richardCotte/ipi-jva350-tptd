@@ -170,4 +170,5 @@ fait des pull request dans le projet choisi, ou rajoute la remote du projet choi
 - BONUS : Créez une petite documentation statique en utilisant MkDocs.
 - Rédigez **ci-dessous** une courte analyse du rapport produit par Sonar (métriques, évolution, état général...) :
 
-Le rapport Sonar final indique...
+Le rapport Sonar final indique qu'il n'y a plus aucuns bugs, code smells, ou quelconque problèmes bloquants, la quality
+gate est passé en passed et le pourcentage de couverture est à 100% le code est donc en règles.

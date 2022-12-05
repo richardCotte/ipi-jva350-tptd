@@ -27,7 +27,7 @@ class EntrepriseTest {
     }
 
     @ParameterizedTest
-    @CsvSource ({
+    @CsvSource({
             "'2022-12-25', true",
             "'2022-12-01', false",
             "'2022-08-15', true",

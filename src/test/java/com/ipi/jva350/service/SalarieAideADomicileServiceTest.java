@@ -62,7 +62,7 @@ class SalarieAideADomicileServiceTest {
         sd.setCongesPayesAcquisAnneeNMoins1(SalarieAideADomicile.CONGES_PAYES_ACQUIS_PAR_MOIS * 12);
         sd.setMoisDebutContrat(LocalDate.of(2022, 01, 01));
         salarieAideADomicileService.creerSalarieAideADomicile(sd);
-        long  result = salarieAideADomicileService.calculeLimiteEntrepriseCongesPermis(sd.getMoisEnCours(),
+        long result = salarieAideADomicileService.calculeLimiteEntrepriseCongesPermis(sd.getMoisEnCours(),
                 sd.getCongesPayesAcquisAnneeNMoins1(),
                 sd.getMoisDebutContrat(),
                 LocalDate.of(2022, 7, 1),

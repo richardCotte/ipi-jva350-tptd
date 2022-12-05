@@ -24,7 +24,7 @@ class SalarieAideADomicileRepositoryMockTest {
     @Test
     void findByNomNotFound() {
         SalarieAideADomicile res = salarieAideADomicileRepository.findByNom("Pierre");
-        Assertions.assertEquals(null, res);
+        Assertions.assertNull(res);
     }
 
     @Test

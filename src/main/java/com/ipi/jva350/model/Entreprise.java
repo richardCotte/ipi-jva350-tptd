@@ -141,7 +141,7 @@ public final class Entreprise {
 
     /**
      * Calcule si une date donnée est dans une plage (intervalle) de date (inclusif)
-     *
+     * <p>
      * Si on n'avait pas fait en TDD, nous n'aurions surement pas commencé par la partie "inclusive"
      *
      * @param d     date a tester
